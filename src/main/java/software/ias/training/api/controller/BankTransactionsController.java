@@ -1,9 +1,6 @@
 package software.ias.training.api.controller;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import software.ias.training.api.domain.BankTransaction;
 import software.ias.training.api.repository.TransactionsRepository;
 
@@ -25,8 +22,27 @@ public class BankTransactionsController {
 
     @RequestMapping(method = RequestMethod.POST)
     public void createTransaction(
-            @RequestBody BankTransaction transaction
-    ) {
+            @RequestBody BankTransaction transaction) {
         repository.createBankTransaction(transaction);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public void deleteTransaction(
+            @RequestBody BankTransaction transaction) {
+        repository.deleteBankTransaction(transaction);
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    public void updateTransaction(
+            @PathVariable final int id,
+            @RequestBody BankTransaction transaction) {
+        repository.updateBankTransaction(transaction);
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object oneTransaction(
+            @PathVariable final int id) {
+        return repository.oneTransaction(id);
     }
 }

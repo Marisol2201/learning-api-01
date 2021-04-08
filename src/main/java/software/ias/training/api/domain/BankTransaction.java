@@ -4,16 +4,21 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class BankTransaction {
+    private final int id;
     private final LocalDate date;
     private final double amount;
     private final String description;
 
-    public BankTransaction(LocalDate date, double amount, String description) {
+    public BankTransaction(int id, LocalDate date, double amount, String description) {
+        this.id = id;
         this.date = date;
         this.amount = amount;
         this.description = description;
     }
 
+    public int getId() {
+        return id;
+    }
 
     public LocalDate getDate() {
         return date;
@@ -31,7 +36,8 @@ public class BankTransaction {
     @Override
     public String toString() {
         return "BankTransaction{" +
-                "date=" + date +
+                "id=" + id +
+                ", date=" + date +
                 ", amount=" + amount +
                 ", description='" + description + '\'' +
                 '}';
@@ -42,11 +48,11 @@ public class BankTransaction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BankTransaction that = (BankTransaction) o;
-        return Double.compare(that.amount, amount) == 0 && Objects.equals(date, that.date) && Objects.equals(description, that.description);
+        return Objects.equals(id, that.id) && Double.compare(that.amount, amount) == 0 && Objects.equals(date, that.date) && Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, amount, description);
+        return Objects.hash(id, date, amount, description);
     }
 }

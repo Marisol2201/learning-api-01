@@ -14,13 +14,24 @@ public class TransactionsRepository {
     public TransactionsRepository(Database database) {
         this.database = database;
     }
-
-
+    //post
     public void createBankTransaction(BankTransaction transaction) {
         database.insertData(transaction);
     }
-
+    //get list
     public List<Object> listBankTransactions() {
         return database.listData();
+    }
+    //delete
+    public void deleteBankTransaction(BankTransaction transaction) {
+        database.delete(transaction);
+    }
+    //put
+    public Object updateBankTransaction(BankTransaction transaction) {
+        return database.update(transaction);
+    }
+    //get one
+    public Object oneTransaction(int id) {
+        return database.getTransaction(id);
     }
 }

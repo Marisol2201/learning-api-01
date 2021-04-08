@@ -7,5 +7,8 @@ import software.ias.training.api.test.Database;
 @Configuration
 public class DatabaseConfiguration {
 
-
+    @Bean
+    public Database databaseBean() {
+        return new Database();
+    }
 }
