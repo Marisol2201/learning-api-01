@@ -1,3 +1,3 @@
 # learning-api-01
 
-Simple API, with methods like get, update and delete
+API with Spring, with methods like get, update and delete
